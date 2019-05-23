@@ -420,6 +420,12 @@ impl fmt::Debug for FullPath {
     }
 }
 
+impl From<FullPath> for PathAndQuery {
+    fn from(fp: FullPath) -> PathAndQuery {
+        fp.0
+    }
+}
+
 fn segment<F, U>(func: F) -> impl Filter<Extract = U, Error = Rejection> + Copy
 where
     F: Fn(&str) -> Result<U, Rejection> + Copy,
